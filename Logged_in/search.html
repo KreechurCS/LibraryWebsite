@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>Search</title>
+</head>
+<body>
+    <form action="search.php" method="POST">
+        <input type="text" name="query" />
+        <input type="submit" value="Search" />
+    </form>
+	
+	<?php
+		echo '<table border="1">'."\n";
+		
+		$result = mysqli_query($conn,"SELECT * FROM books");
+		
+		//Header for table
+		echo "<tr><th>";
+		echo "Product ID";
+		echo "</th><th>";
+		echo "Product Name";
+		echo "</th><th>";
+		echo "Description";
+		echo "</th><th>";
+		echo "Price";
+		echo "</th><th>";
+		echo "Stock";
+		echo "</th></tr>";
+		
+		while($row = mysqli_fetch_array($result))
+		{			
+			//Table contents product
+			echo "<tr><td>";
+			echo $row['productId'];
+			echo("</td><td>");
+			echo $row['PName'];
+			echo("</td><td>");
+			echo $row['Description'];
+			echo("</td><td>");
+			echo $row['Price'];
+			echo("</td><td>");
+			echo $row['Stock'];
+			echo("</td></tr>\n"); ;
+		}
+	?>
+</body>
+</html>
